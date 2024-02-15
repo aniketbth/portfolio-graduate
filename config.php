@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 $hostname='localhost';
 $username='root';
@@ -16,3 +16,4 @@ else
 }
 
 ?>
+ -->
