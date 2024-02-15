@@ -1,3 +1,7 @@
+<?php
+include('config.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
@@ -917,7 +921,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
 
     if(isset($_POST['registerAdmin']))
       {
-        $insertdata = mysqli_query($config,"INSERT INTO admin_info WHERE Name ='$admin' password = '$pass' userssn = '$code'  email ='$mail'");
+        $insertdata = mysqli_query($config,"INSERT INTO admin_info WHERE name ='$admin',password ='$pass',userssn = '$code',email ='$mail'");
 
       if($insertdata)
       {
