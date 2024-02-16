@@ -1,4 +1,4 @@
-<?php
+  <?php
 include('config.php');
 ?>
 
@@ -55,16 +55,31 @@ include('config.php');
       </div>
     </div>
     <!-- /Loading animation -->
+    
+
+
+    <?php 
+
+ $fetch = mysqli_query($config,"SELECT * FROM admin_info");
+ while($row = mysqli_fetch_assoc($fetch))
+{
+   $Aname = $row['name'];
+   $pass = $row['password'];
+   $Email = $row['email'];
+   $pic = $row['admin_pic'];
+}
+?>
+
 
     <div id="page" class="page template-style-dark">
       <!-- Header -->
       <header id="site_header" class="header mobile-menu-hide header-color-dark">
         <div class="my-photo tilt-effect">
-          <img src="images/photo.png" alt="image">
+          <img style="height:50px;width: 50px;" src="<?php echo $pic;?>" alt="image">
         </div>
 
         <div class="site-title-block">
-          <h1 class="site-title">Chandan chaturvedi</h1>
+          <h1 class="site-title"><input  style="background-color: transparent; " readonly type="text" b value="<?php echo $Aname;?>"></h1>
         </div>
 
         <!-- Navigation -->
@@ -78,16 +93,16 @@ include('config.php');
               <a class="pt-trigger" href="#about_me" data-animation="17"><i class="menu-icon pe-7s-icon pe-7s-user"></i>About me</a>
             </li>
             <li>
-              <a class="pt-trigger" href="#resume" data-animation="18"><i class="menu-icon pe-7s-icon pe-7s-id"></i>Resume</a>
+              <a class="pt-trigger" href="#resume" data-animation="18"><i class="menu-icon pe-7s-icon pe-7s-resume"></i>Resume</a>
             </li>
             <li>
               <a class="pt-trigger" href="#portfolio" data-animation="19"><i class="menu-icon pe-7s-icon pe-7s-portfolio"></i>Portfolio</a>
             </li>
             <li>
-              <a class="pt-trigger" href="#contact" data-animation="20"><i class="menu-icon pe-7s-icon pe-7s-mail"></i>Contact</a>
+              <a class="pt-trigger" href="#contact" data-animation="20"><i class="menu-icon pe-7s-icon pe-7s-contact"></i>Contact</a>
             </li>
             <li>
-              <a class="pt-trigger" href="#login" data-animation="20"  style="color: transparent; margin-top: 150px;"><i class="menu-icon pe-7s-icon pe-7s-login"></i>Login</a>
+              <a  href="dashboard/pages/examples/login.php"  style="color: transparent; margin-top: 150px;"><i class="menu-icon pe-7s-icon pe-7s-login"></i>Login</a>
             </li>
              <li class="copyright" style="margin-top: 50px;">
               <p>chandan</p>
@@ -103,7 +118,7 @@ include('config.php');
       <!-- Mobile Header -->
       <div class="mobile-header mobile-visible">
         <div class="mobile-logo-container">
-          <div class="mobile-site-title">Chandan chaturvedi</div>
+          <div class="mobile-site-title"><input type="text" style="background-color: transparent; " readonly  value="<?php echo $Aname;?>"> </div>
         </div>
 
         <a class="menu-toggle mobile-visible">
@@ -123,7 +138,7 @@ include('config.php');
             <section class="pt-page pt-page-1 section-without-bg section-paddings-0 table" data-id="home">
               <div class="section-inner">
                 <div class="home-page-block">
-                  <h2>Chandan chaturvedi</h2>
+                  <h2><input type="text" style="background-color: transparent; text-align:center;border-color:transparent; " readonly  value="<?php echo $Aname;?>"></h2>
                   <div class="owl-carousel text-rotation">                                    
                     <div class="item">
                       <p class="home-page-description">Web Designer</p>
@@ -133,7 +148,7 @@ include('config.php');
                     </div>
                   </div>
                 </div>
-                <p style="color: black;font-size: 26px; width:800px;text-align: center;margin-left: 160px; text-align:justify ;">I am a Full Stack Developer specializing in the LAMP stack, with extensive expertise in front-end development using React. Open to learning and adapting to new technologies, I am an enthusiastic team player with a passion for tech innovation.</p>
+                  <p style="color: black; font-size: 26px; width:800px;text-align: center;margin-left: 160px; text-align:justify ;">I am a Full Stack Developer specializing in the LAMP stack, with extensive expertise in front-end development using React. Open to learning and adapting to new technologies, I am an enthusiastic team player with a passion for tech innovation.</p>
                  
               </div>
             </section>
@@ -916,16 +931,20 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
       <?php
       $admin = $_POST['username'];
       $code = $_POST['userSSN'];
-      $pass = $_POST['Password'];
+      $pass = $_POST['password'];
       $mail = $_POST['mail'];
+      $admin_pic = 'test';
+      $description = 'description';
 
     if(isset($_POST['registerAdmin']))
       {
-        $insertdata = mysqli_query($config,"INSERT INTO admin_info WHERE name ='$admin',password ='$pass',userssn = '$code',email ='$mail'");
+        $insertdata = mysqli_query($config,"INSERT INTO admin_info(name,password,userssn,email,admin_pic,description) VALUES('$admin','$pass','$code','$mail','$admin_pic','$description')");
 
       if($insertdata)
       {
-        echo "<script>alert'data inserted'</script>";
+        session_start();
+        $_SESSION['loggedInUser'] = $username;
+        echo "<script>alert('data inserted');window.location.href='login.php'</script>";
       }
       else
       {
@@ -941,7 +960,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
         <div class="col-12">
             <a href="<?php echo $base_address; ?>" type="submit" class="btn btn-secondary btn-block form-control" name="registerAdmin"><i class="fas fa-home"></i> Back to Home</a>
           </div>
-       <div class="text-center mb-3">Already have an account? <span><a href="admin_login.php">Login Here</a></span></div>
+       <div class="text-center mb-3">Already have an account? <span><a href="dashboard/pages/examples/login.php">Login Here</a></span></div>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

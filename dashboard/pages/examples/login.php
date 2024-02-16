@@ -1,3 +1,6 @@
+<?php
+  include('../../../config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +27,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form  method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="text" class="form-control" placeholder="Username" name="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +37,15 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+         <div class="input-group mb-3">
+          <input type="Code" class="form-control" placeholder="Code" name="code">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -52,10 +63,34 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
+        <?php
+     
+
+      $username = $_POST['Username'];
+      $password = $_POST['password'];
+        $code = $_POST['code'];
+
+      $matchcredentials = mysqli_query($config,"SELECT * FROM admin_info WHERE name = '$username' AND password = '$password' AND userssn = '$code'");
+      if(isset($_POST['submit']))
+      {
+        if (mysqli_num_rows($matchcredentials)>0)
+        {
+          session_start();
+          $_SESSION['loggedInUser'] = $username;
+          echo"<script>alert('login successful')</script>";
+          echo"<script>window.location.href='../../index.php'</script>";
+        }
+        else
+        {
+          echo "<script>alert('No User Found with the provided details.');window.location.href='login.php'</script>";
+        }
+      }
+?>
+
       </form>
 
       <div class="social-auth-links text-center mb-3">
@@ -78,6 +113,7 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+  
 </div>
 <!-- /.login-box -->
 

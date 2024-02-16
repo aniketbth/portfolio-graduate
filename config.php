@@ -8,7 +8,7 @@ $dbname='portfolio_graduate';
 $config = mysqli_connect($hostname,$username,$password,$dbname);
 if($config)
 {
-	echo "";
+	echo "hiihghvhgfcdfxzdsSa";
 }
 else
 {

@@ -46,7 +46,7 @@ include('config.php');
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php" class="nav-link">Home</a>
+        <a href="/index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -217,8 +217,16 @@ include('config.php');
             <a href="./index.php" class="nav-link active">
               <i class="nav-icon fas fa-heart"></i>
               <p>
-                Home
+                Menu
                 <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="pages/home.php" class="nav-link ">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Home
               </p>
             </a>
           </li>
@@ -244,7 +252,6 @@ include('config.php');
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Portfolio
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             
@@ -254,7 +261,6 @@ include('config.php');
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Chats
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             
@@ -266,7 +272,14 @@ include('config.php');
               <i class="nav-icon fas fa-phone"></i>
               <p>
                 Contact
-                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+              <i class="nav-icon fas fa-phone"></i>
+              <p>
+                logout
               </p>
             </a>
             
