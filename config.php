@@ -8,11 +8,13 @@ $dbname='portfolio_graduate';
 $config = mysqli_connect($hostname,$username,$password,$dbname);
 if($config)
 {
-	echo "hiihghvhgfcdfxzdsSa";
+	echo "";
 }
 else
 {
 	echo "Database connection failed with error:";
 }
+
+$base_url = "http://localhost/portfolio-graduate/";
 
 ?>

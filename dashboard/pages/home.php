@@ -1,8 +1,9 @@
 <?php 
 include('../../config.php');
 include('../masterpages/header.php');
-include('../masterpages/Navbar.php');
 include('../masterpages/sidebar.php');
+include('../masterpages/Navbar.php');
+
 ?>
 
 
@@ -31,13 +32,14 @@ include('../masterpages/sidebar.php');
   $id = $_GET['id'];
  while($row = mysqli_fetch_assoc($fetch))
 {
+
+
    
    $Aname = $row['name'];
    $pass = $row['password'];
    $Email = $row['email'];
    $pic = $row['admin_pic'];
    $info = $row['description'];
-   $userimg = $row['admin_pic'];
 }
 ?>
 
@@ -56,11 +58,6 @@ include('../masterpages/sidebar.php');
 
 
  <form method="POST" enctype="multipart/form-data">
-
-      <div class="card-body">      
-        <label for="" class="form-label">ID</label>
-        <input type="number" class="form-control" id="id" name="id" value="<?php echo $id ;?>">
-      </div>
 
 
       <div class="card-body">      
@@ -91,13 +88,16 @@ include('../masterpages/sidebar.php');
      
 
       <div class="card-body">      
-        <label class="form-label">Upload Pic Here</label>
-        <input type="file" class="form-control" id="images" name="images" >
+         <label class="form-label">Upload Pic Here</label>
+        <input type="file" class="form-control" id="images" name="images"  value="<?php echo $pic ;?>">
+
       </div>
 
       
-
+     <div class="card-body" >
       <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+     </div>
+      
     </form>
 
 </div>
@@ -116,7 +116,7 @@ if(isset($_POST['submit']))
 
 
    $base_url = 'http://localhost/portfolio-graduate/#home';
-$targetFolder = '../../uploaded_adminpic/';
+$targetFolder = 'uploaded_adminpic/';
 $orgFileName = $_FILES['images']['name'];
 $tempFileName = $_FILES['images']['tmp_name'];
 

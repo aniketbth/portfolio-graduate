@@ -1,6 +1,20 @@
+<?php
+include ('../../config.php');
+?>
+
  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
+<?php
+     $fetch = mysqli_query($config,"SELECT * FROM admin_info");
+  $id = $_GET['id'];
+ while($row = mysqli_fetch_assoc($fetch))
+{
+
+   $Aname = $row['name'];
+   $pic = $row['admin_pic'];
+}
+?>
     <a href="index3.html" class="brand-link">
       
       <span class="brand-text font-weight-light">Admin Dashboard</span>
@@ -11,10 +25,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo $pic ;?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Chandan chaturvedi</a>
+          <a href="#" class="d-block"><?php echo $Aname;?></a>
         </div>
       </div>
 
@@ -36,7 +50,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="./index.php" class="nav-link active">
+            <a href="../index.php" class="nav-link active">
               <i class="nav-icon fas fa-heart"></i>
               <p>
                 Menu

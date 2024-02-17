@@ -1,5 +1,5 @@
 <?php 
-include('config.php');
+include('../../config.php');
 include('../masterpages/header.php');
 include('../masterpages/Navbar.php');
 include('../masterpages/sidebar.php');
@@ -26,18 +26,20 @@ include('../masterpages/sidebar.php');
     </div>
     <!-- /.content-header -->
  <?php 
-//  $fetch = mysqli_query($config,"SELECT * FROM user_info WHERE username ='{$_SESSION['loggedInUser']}'");
-//  while($row = mysqli_fetch_assoc($fetch))
-// {
-//    $adphon = $row['phone_number'];
-//    $admail = $row['email'];
-//    $adress = $row['address'];
-//    $uname = $row['username'];
-//    $fname = $row['fullname'];
-//    $userimg = $row['user_image'];
-//    $instagram = $row['insta_id'];
-//    $facebook = $row['fb_id'];
-// }
+ $fetch = mysqli_query($config,"SELECT * FROM admin_about ");
+ while($row = mysqli_fetch_assoc($fetch))
+{
+   $age = $row['age'];
+   $residence = $row['residence'];
+   $adress = $row['address'];
+   $mail = $row['email'];
+   $number = $row['phone'];
+   $skype = $row[' skype'];
+   $freelance = $row['freelance'];
+   $adminimg = $row['admin_img'];
+   $instagram = $row['instagram_acc'];
+   $facebook = $row['facebook_acc'];
+}
   ?>
 
 
@@ -55,29 +57,40 @@ include('../masterpages/sidebar.php');
 
 <form method="post" enctype="multipart/form-data">
 <div class="card-body">
+
 <div class="form-group">
-<label for="exampleInputNumber">Phone Number</label>
-<input type="number" class="form-control" name="uphon" id="Pnumber"  value="<?php echo $adphon; ?>">
+<label for="exampleInputNumber">Age</label>
+<input type="number" class="form-control" name="age" id="Pnumber"  value="<?php echo $age; ?>">
 </div>
 
 <div class="form-group">
-<label for="Address">Email</label>
-<input type="text" class="form-control" name="umail" id="mail" value="<?php echo $admail; ?>">
-</div>
-
-<div class="form-group">
-<label for="Address">Fullname</label>
-<input type="text" class="form-control" name="fname" id="fname" value="<?php echo $fname; ?>">
+<label for="Address">Residence</label>
+<input type="text" class="form-control" name="residence" id="mail" value="<?php echo $residence; ?>">
 </div>
 
 <div class="form-group">
 <label for="Address">Address</label>
-<input type="text" class="form-control" name="uaddes" id="Address" value="<?php echo $adress; ?>">
+<input type="text" class="form-control" name="address" id="fname" value="<?php echo $adress; ?>">
 </div>
 
 <div class="form-group">
-<label for="Address">username</label>
-<input type="username" class="form-control" name="user" id="username" value="<?php echo $uname; ?>" readonly="">
+<label for="Address">e-mail</label>
+<input type="text" class="form-control" name="mail" id="Address" value="<?php echo $mail; ?>">
+</div>
+
+<div class="form-group">
+<label for="Address">phone</label>
+<input type="username" class="form-control" name="number" id="username" value="<?php echo $number; ?>" >
+</div>
+
+<div class="form-group">
+<label for="Address">skype</label>
+<input type="username" class="form-control" name="skype" id="username" value="<?php echo $skype; ?>" >
+</div>
+
+<div class="form-group">
+<label for="Address">Freelance</label>
+<input type="username" class="form-control" name="flance" id="username" value="<?php echo $freelance; ?>" >
 </div>
 
 <div class="form-group">
@@ -92,11 +105,11 @@ include('../masterpages/sidebar.php');
 
 <div class="form-group">
 <label for="image">User Image</label>
-<input type="file" accept="jpg,png,jpeg" class="form-control" name="userimg" id="userpimg" value="<?php echo $userimg; ?>">
+<input type="file" accept="jpg,png,jpeg" class="form-control" name="userimg" id="userpimg" value="<?php echo $adminimg; ?>">
 </div>
 
 
-<button type="submit" name="submit" class="btn btn-primary">Update Profile</button>
+<button type="submit" name="update" class="btn btn-primary">Update Profile</button>
 
 </div>
 </form>
@@ -104,49 +117,50 @@ include('../masterpages/sidebar.php');
 </div>
 
 <?php 
-// if(isset($_POST['submit'])) 
-// {
-//   $pone = $_POST['uphon'];
-//   $mail = $_POST['umail'];
-//   $uradd = $_POST['uaddes'];
-//   $uname = $_POST['user'];
-//   $fullname = $_POST['fname'];
-//   $userimg = $_POST['user_image'];
-//   $instagram = $_POST['instagram'];
-//   $facebook = $_POST['facebook'];
+if(isset($_POST['update'])) 
+{
+  $age = $_POST['age'];
+  $residence = $_POST['residence'];
+  $adress = $_POST['address'];
+  $email = $_POST['mail'];
+  $freelance = $_POST['flance'];
+  $skype = $_POST['skype'];
+  $pone = $_POST['uphon'];
+  $userimg = $_POST['user_image'];
+  $instagram = $_POST['instagram'];
+  $facebook = $_POST['facebook'];
 
-//   // image configuration starts here
-//   // $base_url = "http://localhost/vCard/";
-//   $base_url = "https://vcard.aniket.in.net/";
-//   $targetFolder = "modules/upload_userpic/";
+  // image configuration starts here
+  // $base_url = "http://localhost/vCard/";
+  $base_url = "http://localhost/portfolio-graduate/index.php#about_me";
+  $targetFolder = '../../uploaded_adminpic/';
 
-//   $orgimageName = $_FILES['userimg']['name'];
-//   $tempPicName = $_FILES['userimg']['tmp_name'];
+  $orgimageName = $_FILES['adminimg']['name'];
+  $tempPicName = $_FILES['adminimg']['tmp_name'];
 
-//   $completeImageName = $base_url.$targetFolder.$orgimageName;
+  $completeImageName = $base_url.$targetFolder.$orgimageName;
 
-//   // $sql = "UPDATE user_info SET phone_number='$pone',email='$mail',address='$uradd',fullname = '$fullname',userpic = '$userimg' WHERE username ='{$_SESSION['loggedInUser']}'";
+ 
+  if(!empty($orgimageName))
+  {
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$mail',address='$address',instagram_acc='$instagram',facebook_acc = '$facebook',admin_img = '$completeImageName',skype = '$skype',freelance = '$freelance',age = '$age',residence = '$residence'  WHERE username ='{$_SESSION['loggedInUser']}'");
 
-//   if(!empty($orgimageName))
-//   {
-//     mysqli_query($config,"UPDATE user_info SET phone_number='$pone',email='$mail',address='$uradd',fullname = '$fullname',insta_id='$instagram',fb_id = '$facebook',user_avatar = '$completeImageName' WHERE username ='{$_SESSION['loggedInUser']}'");
-
-//     move_uploaded_file($tempPicName, $targetFolder.$orgimageName);
+    move_uploaded_file($tempPicName, $targetFolder.$orgimageName);
     
-//     echo "<script>alert('Data & Profile Picture Updated Successfully');window.location.href='edit_home.php'</script>";
-//   }
-//   elseif(empty($orgimageName)) 
-//   {
-//     mysqli_query($config,"UPDATE user_info SET phone_number='$pone',email='$mail',address='$uradd',fullname = '$fullname',insta_id='$instagram',fb_id = '$facebook' WHERE username ='{$_SESSION['loggedInUser']}'");
+    echo "<script>alert('Data & Profile Picture Updated Successfully');window.location.href='home.php'</script>";
+  }
+  elseif(empty($orgimageName)) 
+  {
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$mail',address='$address',instagram_acc='$instagram',facebook_acc = '$facebook',skype = '$skype',freelance = '$freelance',age = '$age',residence = '$residence'  WHERE username ='{$_SESSION['loggedInUser']}'");
 
-//     echo "<script>alert('Data Updated Successfully63);window.location.href='edit_home.php'</script>";
+    echo "<script>alert('Data Updated Successfully63);window.location.href='home.php'</script>";
   
-//   }
-//   else
-//   {
-//     echo "<script>alert('No Data Changed')</script>";
-//   }
-// }
+  }
+  else
+  {
+    echo "<script>alert('No Data Changed')</script>";
+  }
+}
  ?>
 
 </div>

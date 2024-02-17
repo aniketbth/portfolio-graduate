@@ -67,6 +67,7 @@ include('config.php');
    $pass = $row['password'];
    $Email = $row['email'];
    $pic = $row['admin_pic'];
+   $info = $row['description'];
 }
 ?>
 
@@ -93,18 +94,18 @@ include('config.php');
               <a class="pt-trigger" href="#about_me" data-animation="17"><i class="menu-icon pe-7s-icon pe-7s-user"></i>About me</a>
             </li>
             <li>
-              <a class="pt-trigger" href="#resume" data-animation="18"><i class="menu-icon pe-7s-icon pe-7s-resume"></i>Resume</a>
+              <a class="pt-trigger" href="#resume" data-animation="18"><i class="menu-icon pe-7s-icon pe-7s-id"></i>Resume</a>
             </li>
             <li>
               <a class="pt-trigger" href="#portfolio" data-animation="19"><i class="menu-icon pe-7s-icon pe-7s-portfolio"></i>Portfolio</a>
             </li>
             <li>
-              <a class="pt-trigger" href="#contact" data-animation="20"><i class="menu-icon pe-7s-icon pe-7s-contact"></i>Contact</a>
+              <a class="pt-trigger" href="#contact" data-animation="20"><i class="menu-icon pe-7s-icon pe-7s-mail"></i>Contact</a>
             </li>
-            <li>
-              <a  href="dashboard/pages/examples/login.php"  style="color: transparent; margin-top: 150px;"><i class="menu-icon pe-7s-icon pe-7s-login"></i>Login</a>
-            </li>
-             <li class="copyright" style="margin-top: 50px;">
+
+
+         
+             <li class="copyright" style="margin-top: 250px;">
               <p>chandan</p>
               <p>Copyright  &copy; <?php echo date('Y'); ?></p>
               </li>
@@ -112,6 +113,12 @@ include('config.php');
           <!-- /Main menu -->
         </div>
         <!-- Navigation -->
+        <ol type="" style="margin-top:5px;color: transparent;margin-left: 20px;">
+          <li>
+          <a href="dashboard/pages/examples/login.php" style="color: transparent;" ><i class="menu-icon pe-7s-icon pe-7s-login"></i>login</a>
+        </li>
+        </ol>
+        
       </header>
       <!-- /Header -->
 
@@ -148,7 +155,7 @@ include('config.php');
                     </div>
                   </div>
                 </div>
-                  <p style="color: black; font-size: 26px; width:800px;text-align: center;margin-left: 160px; text-align:justify ;">I am a Full Stack Developer specializing in the LAMP stack, with extensive expertise in front-end development using React. Open to learning and adapting to new technologies, I am an enthusiastic team player with a passion for tech innovation.</p>
+                <p style="color: black; font-size: 26px; width:800px;text-align: center;margin-left: 160px; text-align:justify ;"><?php echo $info ;?></p>
                  
               </div>
             </section>
