@@ -168,14 +168,14 @@ include('config.php');
                 <div class="section-title-block">
                   <div class="section-title-wrapper clearfix">
                     <h2 class="section-title">About Me</h2>
-                    <h5 class="section-description">Artist, Thinker, Creative Doer</h5>
+                    <h5 class="section-description"><?php echo $title ;?></h5>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-sm-6 col-md-6 col-lg-4 subpage-block">
                     <div class="my-photo-block tilt-effect">
-                      <img src="images/photo.png" alt="">
+                      <img style="height:400px;" src="<?php echo $pic ;?>" alt="">
                     </div>
                   </div>
 
@@ -183,30 +183,46 @@ include('config.php');
                     <h3>I am Web Designer @ Company.com</h3>
                     <p style="color:whitesmoke;">As an aspiring Full Stack Developer Apprentice, I am deeply engaged in honing my skills within the dynamic realm of web development. My journey so far has led me to specialize in the LAMP stack, a powerful combination of Linux, Apache, MySQL, and PHP, which lays the foundation for robust back-end development. Alongside this, I have cultivated extensive expertise in front-end development, with a particular focus on creating responsive and interactive user interfaces using React. This dual focus equips me with a comprehensive understanding of both the server-side and client-side aspects of web applications.
 
-My technical</p> <p style="margin-left: -400px; margin-top:20px;">proficiency is matched by an unwavering openness to learning and adapting to new technologies. The tech landscape is ever-evolving, and I am committed to staying at the forefront of innovation, continuously expanding my skill set to include the latest tools and frameworks. This growth mindset is driven by my passion for technology and its potential to solve complex problems and create meaningful user experiences.
-
-Beyond my technical capabilities, I value the importance of teamwork and collaboration in the tech industry. I believe that the best solutions emerge from diverse teams working together, where each member contributes their unique perspective and expertise. As an enthusiastic team player, I strive to support my colleagues, share knowledge, and learn from others, fostering a positive and productive working environment.
-
-In pursuit of my ambition to become a well-rounded Full Stack Developer, I am eager to immerse myself in challenging projects that push the boundaries of what's possible. I am excited about the opportunity to contribute to innovative solutions that leverage my skills in the LAMP stack and React, while also allowing me to explore new technologies and methodologies. My journey as a Full Stack Developer Apprentice is not just about personal growth; it's about being part of a community that shapes the future of technology, driving progress and making a tangible impact on the world through tech innovation.</p>
+My technical</p> 
                   </div>
+<?php
 
+$fetchabout = mysqli_query($config,"SELECT * FROM admin_about");
+while ($row = mysqli_fetch_assoc($fetchabout))
+{
+  $age = $row['age'];
+  $residence = $row['residence'];
+  $address = $row['address'];
+  $mail = $row['email'];
+  $phone = $row['phone'];
+  $skype = $row['skype'];
+  $title = $row['title'];
+  $freelance = $row['freelance'];
+  $insta = $row['instagram_acc'];
+  $facebook = $row['facebook_acc'];
+  $pic = $row['about_img'];
+
+}
+
+
+?>
                   <div class="col-sm-6 col-md-6 col-lg-4 subpage-block">
                     <ul class="info-list">
-                      <li><span class="title">Age</span><span class="value">29</span></li>
-                      <li><span class="title">Residence</span><span class="value">USA</span></li>
-                      <li><span class="title">Address</span><span class="value">88 Some Street, Some Town</span></li>
-                      <li><span class="title">e-mail</span><span class="value"><a href="/cdn-cgi/l/email-protection#62070f030b0e22071a030f120e074c010d0f"><span class="__cf_email__" data-cfemail="3f5a525e56537f5a475e524f535a115c5052">[email&#160;protected]</span></a></span></li>
-                      <li><span class="title">Phone</span><span class="value">+0123 123 456 789</span></li>
-                      <li><span class="title">Skype</span><span class="value">alex.smith</span></li>
-                      <li><span class="title">Freelance</span><span class="value available">Available</span></li>
+                      <li><span class="title">Age</span><span class="value"><?php echo $age;?></span></li>
+                      <li><span class="title">Residence</span><span class="value"><?php echo $residence;?></span></li>
+                      <li><span class="title">Address</span><span class="value"><?php echo $address;?></span></li>
+                      <li><span class="title">e-mail</span><span class="value"><?php echo $mail;?></span></li>
+                      <li><span class="title">Phone</span><span class="value"><?php echo $phone;?></span></li>
+                      <li><span class="title">Skype</span><span class="value"><?php echo $skype;?></span></li>
+                      <li><span class="title">Freelance</span><span class="value available"><?php echo $freelance;?></span></li>
                     </ul>
 
                     <ul class="social-links">
                       <li><a class="tip social-button" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li> <!-- Full list of social icons: http://fontawesome.io/icons/#brand -->
-                      <li><a class="tip social-button" href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                      <li><a class="tip social-button" href="<?php echo $facebook;?>" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                       <li><a class="tip social-button" href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
                       <li><a class="tip social-button" href="#" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                      <li><a class="tip social-button" href="#" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                      <li><a class="tip social-button" href="#" title="<?php echo $insta;?>"><i class="fa fa-instagram"></i></a></li>
                       <!--<li><a class="tip social-button" href="#" title="last.fm"><i class="fa fa-lastfm"></i></a></li>-->
                       <!--<li><a class="tip social-button" href="#" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>-->
                     </ul>
@@ -214,6 +230,18 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
                 </div>
 
                <!-- Services block -->
+              <?php 
+ $fetch = mysqli_query($config,"SELECT * FROM admin_about ");
+ while($row = mysqli_fetch_assoc($fetch))
+{
+   $web = $row['web_design'];
+   $photo = $row['photography'];
+   $crate = $row['creativity'];
+   $designing = $row['desiging'];
+}
+  ?>
+
+
                 <div class="block-title">
                   <h3>Services</h3>
                 </div>
@@ -224,7 +252,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
                       <div class="service-info">
                         <img src="images/service/web_design_icon.png" alt="Responsive Design">
                         <h4>Web Design</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <p><?php echo $web; ?></p>
                       </div>
                     </div>
                   </div>
@@ -234,7 +262,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
                       <div class="service-info">
                         <img src="images/service/photography_icon.png" alt="Photography">
                         <h4>Photography</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <p><?php echo $photo ;?>.</p>
                       </div>
                     </div>
                   </div>
@@ -244,7 +272,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
                       <div class="service-info">
                         <img src="images/service/creativity_icon.png" alt="Creativity">
                         <h4>Creativity</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <p><?php echo $crate; ?></p>
                       </div>
                     </div>
                   </div>
@@ -254,7 +282,7 @@ In pursuit of my ambition to become a well-rounded Full Stack Developer, I am ea
                       <div class="service-info">
                         <img src="images/service/advetising_icon.png" alt="Advetising">
                         <h4>Advertising</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <p><?php echo $designing; ?></p>
                       </div>
                     </div>
                   </div>

@@ -34,11 +34,16 @@ include('../masterpages/sidebar.php');
    $adress = $row['address'];
    $mail = $row['email'];
    $number = $row['phone'];
-   $skype = $row[' skype'];
+   $sky = $row['skype'];
+   $title = $row['title'];
    $freelance = $row['freelance'];
    $adminimg = $row['admin_img'];
    $instagram = $row['instagram_acc'];
    $facebook = $row['facebook_acc'];
+   $web = $row['web_design'];
+   $photo = $row['photography'];
+   $crate = $row['creativity'];
+   $designing = $row['desiging'];
 }
   ?>
 
@@ -65,17 +70,17 @@ include('../masterpages/sidebar.php');
 
 <div class="form-group">
 <label for="Address">Residence</label>
-<input type="text" class="form-control" name="residence" id="mail" value="<?php echo $residence; ?>">
+<input type="text" class="form-control" name="residence" id="" value="<?php echo $residence; ?>">
 </div>
 
 <div class="form-group">
 <label for="Address">Address</label>
-<input type="text" class="form-control" name="address" id="fname" value="<?php echo $adress; ?>">
+<input type="text" class="form-control" name="address"  value="<?php echo $adress; ?>">
 </div>
 
 <div class="form-group">
 <label for="Address">e-mail</label>
-<input type="text" class="form-control" name="mail" id="Address" value="<?php echo $mail; ?>">
+<input type="text" class="form-control" name="mail" id="" value="<?php echo $mail; ?>">
 </div>
 
 <div class="form-group">
@@ -84,12 +89,19 @@ include('../masterpages/sidebar.php');
 </div>
 
 <div class="form-group">
-<label for="Address">skype</label>
-<input type="username" class="form-control" name="skype" id="username" value="<?php echo $skype; ?>" >
+<label for="text">skype</label>
+<input type="text" class="form-control" name="skype" id="" value="<?php echo $sky
+; ?>" >
 </div>
 
 <div class="form-group">
-<label for="Address">Freelance</label>
+<label for="text">Title</label>
+<input type="text" class="form-control" name="title" id="" value="<?php echo $title
+; ?>" >
+</div>
+
+<div class="form-group">
+<label for="text">Freelance</label>
 <input type="username" class="form-control" name="flance" id="username" value="<?php echo $freelance; ?>" >
 </div>
 
@@ -105,7 +117,27 @@ include('../masterpages/sidebar.php');
 
 <div class="form-group">
 <label for="image">User Image</label>
-<input type="file" accept="jpg,png,jpeg" class="form-control" name="userimg" id="userpimg" value="<?php echo $adminimg; ?>">
+<input type="file" accept="jpg,png,jpeg" class="form-control" name="images"  value="<?php echo $adminimg; ?>">
+</div>
+
+<div class="form-group">
+<label for="text">Web-Design</label>
+<input type="text" class="form-control" name="web_design" id="" value="<?php echo $web; ?>" >
+</div>
+
+<div class="form-group">
+<label for="text">Photography</label>
+<input type="text" class="form-control" name="photography" id="" value="<?php echo $photo; ?>" >
+</div>
+
+<div class="form-group">
+<label for="text">Creativity</label>
+<input type="text" class="form-control" name="creativity" id="" value="<?php echo $crate; ?>" >
+</div>
+
+<div class="form-group">
+<label for="text">Designing</label>
+<input type="text" class="form-control" name="desiging" id="" value="<?php echo $designing; ?>" >
 </div>
 
 
@@ -121,37 +153,40 @@ if(isset($_POST['update']))
 {
   $age = $_POST['age'];
   $residence = $_POST['residence'];
-  $adress = $_POST['address'];
+  $addres = $_POST['address'];
   $email = $_POST['mail'];
   $freelance = $_POST['flance'];
-  $skype = $_POST['skype'];
-  $pone = $_POST['uphon'];
-  $userimg = $_POST['user_image'];
+  $sky = $_POST['skype'];
+  $title = $_POST['title'];
+  $pone = $_POST['number'];
+  $adminimg = $_POST['images'];
   $instagram = $_POST['instagram'];
   $facebook = $_POST['facebook'];
+  $web = $_POST['web_design'];
+   $photo = $_POST['photography'];
+   $crate = $_POST['creativity'];
+   $designing = $_POST['desiging'];
 
-  // image configuration starts here
-  // $base_url = "http://localhost/vCard/";
-  $base_url = "http://localhost/portfolio-graduate/index.php#about_me";
-  $targetFolder = '../../uploaded_adminpic/';
+  
+   $base_url = 'http://localhost/portfolio-graduate/#about_me';
+$targetFolder = 'uploaded_adminpic/adminpic_about/';
+$orgFileName = $_FILES['images']['name'];
+$tempFileName = $_FILES['images']['tmp_name'];
 
-  $orgimageName = $_FILES['adminimg']['name'];
-  $tempPicName = $_FILES['adminimg']['tmp_name'];
-
-  $completeImageName = $base_url.$targetFolder.$orgimageName;
+$completeAddress = $base_url.$targetFolder.$orgFileName;
 
  
-  if(!empty($orgimageName))
+  if(!empty($orgFileName))
   {
-    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$mail',address='$address',instagram_acc='$instagram',facebook_acc = '$facebook',admin_img = '$completeImageName',skype = '$skype',freelance = '$freelance',age = '$age',residence = '$residence'  WHERE username ='{$_SESSION['loggedInUser']}'");
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',about_img = '$completeAddress',skype = '$sky',title = '$title',freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing'");
 
-    move_uploaded_file($tempPicName, $targetFolder.$orgimageName);
+    move_uploaded_file($tempFileName, $targetFolder.$orgimageName);
     
     echo "<script>alert('Data & Profile Picture Updated Successfully');window.location.href='home.php'</script>";
   }
-  elseif(empty($orgimageName)) 
+  elseif(empty($orgFileName)) 
   {
-    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$mail',address='$address',instagram_acc='$instagram',facebook_acc = '$facebook',skype = '$skype',freelance = '$freelance',age = '$age',residence = '$residence'  WHERE username ='{$_SESSION['loggedInUser']}'");
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',skype = '$sky',title = '$title', freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing'");
 
     echo "<script>alert('Data Updated Successfully63);window.location.href='home.php'</script>";
   
