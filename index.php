@@ -162,6 +162,20 @@ include('config.php');
             <!-- End of Home Subpage -->
 
             <!-- About Me Subpage -->
+            <?php
+
+$fetchabout = mysqli_query($config,"SELECT * FROM admin_about");
+while ($row = mysqli_fetch_assoc($fetchabout))
+{
+
+  $title = $row['title'];
+  $detail = $row['detail'];
+  
+
+}
+
+
+?>
             <section class="pt-page pt-page-2" data-id="about_me">
               <div class="border-block-top-110"></div>
               <div class="section-inner">
@@ -180,7 +194,7 @@ include('config.php');
                   </div>
 
                   <div class="col-sm-6 col-md-6 col-lg-4">
-                    <h3>I am Web Designer @ Company.com</h3>
+                    <h3><?php echo $detail; ?></h3>
                     <p style="color:whitesmoke;">As an aspiring Full Stack Developer Apprentice, I am deeply engaged in honing my skills within the dynamic realm of web development. My journey so far has led me to specialize in the LAMP stack, a powerful combination of Linux, Apache, MySQL, and PHP, which lays the foundation for robust back-end development. Alongside this, I have cultivated extensive expertise in front-end development, with a particular focus on creating responsive and interactive user interfaces using React. This dual focus equips me with a comprehensive understanding of both the server-side and client-side aspects of web applications.
 
 My technical</p> 
@@ -238,6 +252,10 @@ while ($row = mysqli_fetch_assoc($fetchabout))
    $photo = $row['photography'];
    $crate = $row['creativity'];
    $designing = $row['desiging'];
+   $Hclients = $row['happy_clients'];
+   $Whours = $row['working_hours'];
+   $Awon = $row['awards_won'];
+   $Cconsumed = $row['coffee_consumed'];
 }
   ?>
 
@@ -430,7 +448,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                     <div class="fun-fact-block gray-bg tilt-effect">
                       <i class="pe-7s-icon pe-7s-smile"></i>
                       <h4>Happy Clients</h4>
-                      <span class="fun-value">1,024</span>
+                      <span class="fun-value"><?php echo $Hclients; ?></span>
                     </div>
                   </div>
 
@@ -438,7 +456,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                     <div class="fun-fact-block">
                       <i class="pe-7s-icon pe-7s-alarm"></i>
                       <h4>Working Hours</h4>
-                      <span class="fun-value">6,256</span>
+                      <span class="fun-value"><?php echo $Whours; ?></span>
                     </div>
                   </div>
 
@@ -446,7 +464,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                     <div class="fun-fact-block gray-bg">
                       <i class="pe-7s-icon pe-7s-medal"></i>
                       <h4>Awards Won</h4>
-                      <span class="fun-value">21</span>
+                      <span class="fun-value"><?php echo $Awon; ?></span>
                     </div>
                   </div>
 
@@ -454,7 +472,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                     <div class="fun-fact-block">
                       <i class="pe-7s-icon pe-7s-coffee"></i>
                       <h4>Coffee Consumed</h4>
-                      <span class="fun-value">20,000</span>
+                      <span class="fun-value"><?php echo $Cconsumed; ?></span>
                     </div>
                   </div>
                 </div>
@@ -796,6 +814,16 @@ while ($row = mysqli_fetch_assoc($fetchabout))
             <!-- /Portfolio Subpage -->
 
             <!-- Contact Subpage -->
+            <?php 
+            $fetch = mysqli_query($config,"SELECT * FROM contact_admin");
+            while($row = mysqli_fetch_assoc($fetch))
+            {
+              $address = $row['address'];
+              $mail = $row['email'];
+              $pnumbar = $row['phone_number'];
+              $free = $row['freelance'];
+            }
+            ?>
             <section class="pt-page pt-page-5" data-id="contact">
               <div class="border-block-top-110"></div>
               <div class="section-inner">
@@ -817,7 +845,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                         <i class="pe-7s-icon pe-7s-map-marker"></i>
                       </div>
                       <div class="ci-text">
-                        <h5>Los Angeles, USA</h5>
+                        <h5><?php echo $address; ?></h5>
                       </div>
                     </div>
                     <div class="contact-info-block">
@@ -825,7 +853,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                         <i class="pe-7s-icon pe-7s-mail"></i>
                       </div>
                       <div class="ci-text">
-                        <h5><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e9e4edf0fbe5e1fce0c8edf0e9e5f8e4eda6ebe7e5">[email&#160;protected]</a></h5>
+                        <h5><a href="/cdn-cgi/l/email-protection"><?php echo $mail; ?></a></h5>
                       </div>
                     </div>
                     <div class="contact-info-block">
@@ -833,7 +861,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                         <i class="pe-7s-icon pe-7s-call"></i>
                       </div>
                       <div class="ci-text">
-                        <h5>+123 654 78900</h5>
+                        <h5><?php echo $pnumbar; ?></h5>
                       </div>
                     </div>
                     <div class="contact-info-block">
@@ -841,7 +869,7 @@ while ($row = mysqli_fetch_assoc($fetchabout))
                         <i class="pe-7s-icon pe-7s-check"></i>
                       </div>
                       <div class="ci-text">
-                        <h5>Freelance Available</h5>
+                        <h5><?php echo $free; ?></h5>
                       </div>
                     </div>
                   </div>

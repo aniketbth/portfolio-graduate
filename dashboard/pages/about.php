@@ -17,7 +17,7 @@ include('../masterpages/sidebar.php');
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
               <li class="breadcrumb-item active">About Us</li>
             </ol>
           </div><!-- /.col -->
@@ -44,6 +44,17 @@ include('../masterpages/sidebar.php');
    $photo = $row['photography'];
    $crate = $row['creativity'];
    $designing = $row['desiging'];
+   $Hclients = $row['happy_clients'];
+   $Whours = $row['working_hours'];
+   $Awon = $row['awards_won'];
+   $Cconsumed = $row['coffee_consumed'];
+   $detail = $row['detail'];
+   $c1 = $row['client1'];
+   $c2 = $row['client2'];
+   $c3 = $row['client3'];
+   $c4 = $row['client4'];
+   $c5 = $row['client5'];
+   $c6 = $row['client6'];
 }
   ?>
 
@@ -56,12 +67,20 @@ include('../masterpages/sidebar.php');
 
 <div class="card card-primary">
 <div class="card-header">
-<h3 class="card-title">Quick Example</h3>
+<h3 class="card-title">About Section</h3>
 </div>
 
 
 <form method="post" enctype="multipart/form-data">
 <div class="card-body">
+
+
+  <div>
+  <h1>----------Edit About Section Here--------</h1>
+</div>
+<div style="height: 50px;"></div>
+
+
 
 <div class="form-group">
 <label for="exampleInputNumber">Age</label>
@@ -95,6 +114,13 @@ include('../masterpages/sidebar.php');
 </div>
 
 <div class="form-group">
+<label for="text">Detail</label>
+<input type="text" class="form-control" name="detail" id="" value="<?php echo $detail
+; ?>" >
+</div>
+
+
+<div class="form-group">
 <label for="text">Title</label>
 <input type="text" class="form-control" name="title" id="" value="<?php echo $title
 ; ?>" >
@@ -120,6 +146,10 @@ include('../masterpages/sidebar.php');
 <input type="file" accept="jpg,png,jpeg" class="form-control" name="images"  value="<?php echo $adminimg; ?>">
 </div>
 
+<div><h1>---------Edit Services Section Here--------</div>
+  <div style="height: 50px;"></div>
+
+
 <div class="form-group">
 <label for="text">Web-Design</label>
 <input type="text" class="form-control" name="web_design" id="" value="<?php echo $web; ?>" >
@@ -139,6 +169,34 @@ include('../masterpages/sidebar.php');
 <label for="text">Designing</label>
 <input type="text" class="form-control" name="desiging" id="" value="<?php echo $designing; ?>" >
 </div>
+<div>
+  <h1>----------Edit Fun Facts Sections Here--------</h1>
+</div>
+<div style="height: 50px;"></div>
+
+
+<div class="form-group">
+<label for="text">Happy Clients</label>
+<input type="text" class="form-control" name="Hclients" id="" value="<?php echo $Hclients; ?>" >
+</div>
+
+<div class="form-group">
+<label for="number">Working Hours</label>
+<input type="text" class="form-control" name="wHours" id="" value="<?php echo  $Whours; ?>" >
+</div>
+
+<div class="form-group">
+<label for="number">Awards Won</label>
+<input type="text" class="form-control" name="Awon" id="" value="<?php echo  $Awon; ?>" >
+</div>
+
+
+<div class="form-group">
+<label for="text">Coffee Consumed</label>
+<input type="number" class="form-control" name="cConsumed" id="" value="<?php echo $Cconsumed; ?>" >
+</div>
+
+
 
 
 <button type="submit" name="update" class="btn btn-primary">Update Profile</button>
@@ -162,11 +220,18 @@ if(isset($_POST['update']))
   $adminimg = $_POST['images'];
   $instagram = $_POST['instagram'];
   $facebook = $_POST['facebook'];
+  $detail = $_POST['detail'];
+  // =======services========
   $web = $_POST['web_design'];
-   $photo = $_POST['photography'];
-   $crate = $_POST['creativity'];
-   $designing = $_POST['desiging'];
-
+  $photo = $_POST['photography'];
+  $crate = $_POST['creativity'];
+  $designing = $_POST['desiging'];
+  // =========Fun Facts=======
+  $Hclients = $_POST['Hclients'];
+  $Whours = $_POST['wHours'];
+  $Awon = $_POST['Awon'];
+  $Cconsumed = $_POST['cConsumed'];
+ 
   
    $base_url = 'http://localhost/portfolio-graduate/#about_me';
 $targetFolder = 'uploaded_adminpic/adminpic_about/';
@@ -178,7 +243,7 @@ $completeAddress = $base_url.$targetFolder.$orgFileName;
  
   if(!empty($orgFileName))
   {
-    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',about_img = '$completeAddress',skype = '$sky',title = '$title',freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing'");
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',about_img = '$completeAddress',skype = '$sky',title = '$title',freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing',happy_clients = '$Hclients',working_hours = '$Whours',awards_won = '$Awon',coffee_consumed = '$Cconsumed',detail = '$detail'");
 
     move_uploaded_file($tempFileName, $targetFolder.$orgimageName);
     
@@ -186,9 +251,9 @@ $completeAddress = $base_url.$targetFolder.$orgFileName;
   }
   elseif(empty($orgFileName)) 
   {
-    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',skype = '$sky',title = '$title', freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing'");
+    mysqli_query($config,"UPDATE admin_about SET phone='$pone',email='$email',address='$addres',instagram_acc='$instagram',facebook_acc = '$facebook',skype = '$sky',title = '$title', freelance = '$freelance',age = '$age',residence = '$residence',web_design = '$web',photography = '$photo',creativity = '$crate',desiging = '$designing',happy_clients = '$Hclients',working_hours = '$Whours',awards_won = '$Awon',coffee_consumed = '$Cconsumed',detail = '$detail'");
 
-    echo "<script>alert('Data Updated Successfully63);window.location.href='home.php'</script>";
+    echo "<script>alert('Data Updated Successfully);window.location.href='home.php'</script>";
   
   }
   else

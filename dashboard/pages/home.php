@@ -113,6 +113,7 @@ if(isset($_POST['submit']))
  $Description = $_POST['description'];
  $pass = $_POST['password'];
  $pic = $_POST['images'];
+ 
 
 
    $base_url = 'http://localhost/portfolio-graduate/#home';
